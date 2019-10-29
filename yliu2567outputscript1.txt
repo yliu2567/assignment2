@@ -1,0 +1,124 @@
+--------------
+show databases
+--------------
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| vetoffice          |
++--------------------+
+4 rows in set (0.00 sec)
+
+--------------
+DROP database if exists yliu2567assign2db
+--------------
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+--------------
+create database yliu2567assign2db
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost'
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+show tables
+--------------
+
+Empty set (0.00 sec)
+
+--------------
+CREATE TABLE doctor(
+fname  varchar(20) NOT NULL,
+lname varchar(20) NOT NULL,
+licensenumber char(4) NOT NULL UNIQUE,
+specialty char(30) NOT NULL,
+license_startdate DATE NOT NULL,
+works_at char(3),
+PRIMARY KEY (licensenumber)
+)
+--------------
+
+Query OK, 0 rows affected (0.08 sec)
+
+--------------
+CREATE TABLE hospital(
+code char(3) NOT NULL UNIQUE,
+name varchar(20) NOT NULL,
+city varchar(20) NOT NULL,
+province varchar(20) NOT NULL,
+number_of_beds INT NOT NULL,
+currenthead char(4) NOT NULL,
+start_date DATE NOT NULL,
+PRIMARY KEY (code),
+FOREIGN KEY (currenthead) REFERENCES doctor(licensenumber)
+)
+--------------
+
+Query OK, 0 rows affected (0.08 sec)
+
+--------------
+ALTER TABLE doctor
+ADD FOREIGN KEY (works_at) REFERENCES hospital(code)
+--------------
+
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+--------------
+CREATE TABLE patient(
+ohip int(9) NOT NULL UNIQUE,
+fname char(20) NOT NULL,
+lname char(20) NOT NULL,
+PRIMARY KEY (OHIP))
+--------------
+
+Query OK, 0 rows affected (0.06 sec)
+
+--------------
+CREATE TABLE treats(
+patient_ohip int(9) NOT NULL,
+treated_by char(4) NOT NULL,
+PRIMARY KEY (patient_ohip, treated_by),
+FOREIGN KEY (patient_ohip) REFERENCES patient(ohip),
+FOREIGN KEY (treated_by) REFERENCES doctor(licensenumber)
+ON DELETE CASCADE
+)
+--------------
+
+Query OK, 0 rows affected (0.05 sec)
+
+Bye

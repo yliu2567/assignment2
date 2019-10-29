@@ -1,0 +1,38 @@
+SHOW databases;
+USE yliu2567assign2db;
+-- Query 1
+SELECT lname FROM patient;
+-- Query 2
+SELECT distinct lname FROM patient;
+-- Query 3
+SELECT * FROM doctor ORDER BY lname;
+-- Query 4
+SELECT name, code FROM hospital WHERE number_of_beds > 1500;
+-- Query 5
+SELECT lname, fname FROM doctor, hospital WHERE doctor.works_at = hospital.code AND hospital.name = "St. Joseph";
+-- Query 6
+SELECT fname, lname FROM patient WHERE lname LIKE 'G%';
+-- Query 7
+SELECT p.fname, p.lname FROM patient p INNER JOIN treats t 
+ON p.ohip = t.patient_ohip INNER JOIN doctor d 
+ON t.treated_by = d.licensenumber WHERE d.lname = "Clooney";
+-- Query 8
+SELECT h.name, h.city, d.lname FROM hospital h INNER JOIN doctor d 
+ON h.currenthead = d.licensenumber;
+-- Query 9
+SELECT sum(number_of_beds) AS total_number_of_beds FROM hospital;
+-- Query 10
+SELECT p.fname, d.fname FROM patient p INNER JOIN treats t 
+ON p.ohip = t.patient_ohip INNER JOIN doctor d 
+ON t.treated_by = d.licensenumber WHERE d.licensenumber IN 
+(SELECT currenthead FROM hospital); 
+-- Query 11
+SELECT fname, lname FROM doctor INNER JOIN hospital 
+ON doctor.works_at = hospital.code WHERE doctor.specialty = "Surgeon" 
+AND hospital.name = "Victoria";
+-- Query 12
+SELECT fname FROM doctor WHERE licensenumber NOT IN 
+(SELECT treated_by FROM treats);
+-- Query 13
+SELECT fname, lname FROM treats INNER JOIN doctor 
+ON treated_by = licensenumber GROUP BY licensenumber HAVING count(patient_ohip)>1;

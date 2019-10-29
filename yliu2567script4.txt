@@ -1,0 +1,30 @@
+SHOW databases;
+USE yliu2567assign2db;
+
+DELETE FROM doctor WHERE license_startdate < "1965-01-01";
+
+CREATE VIEW treatedbyheads AS SELECT p.fname, p.lname AS patient_lname, 
+d.lname AS doctor_lname, h.name FROM 
+patient p INNER JOIN treats t ON p.ohip = t.patient_ohip INNER JOIN 
+doctor d ON t.treated_by = d.licensenumber INNER JOIN hospital h ON 
+d.licensenumber = h.currenthead WHERE t.treated_by IN 
+(SELECT currenthead FROM hospital) AND h.start_date > "1995-12-31";
+
+SELECT * FROM treatedbyheads; 
+
+SELECT * FROM doctor;
+
+SELECT * FROM treats;
+
+DELETE FROM doctor WHERE lname = "Clooney";
+
+SELECT * FROM doctor;
+
+-- TABEL treats set foreign key on delete cascade.
+
+DELETE FROM doctor WHERE specialty = "Surgeon";
+-- the delete command did not delete the rows because two row in doctor table
+-- where their specialty = "Surgeon" are referenced as foreign key in the
+-- hospital table where I did not add the on delete cascade.
+
+SELECT * FROM doctor;

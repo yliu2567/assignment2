@@ -1,0 +1,207 @@
+--------------
+SHOW databases
+--------------
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| vetoffice          |
+| yliu2567assign2db  |
++--------------------+
+5 rows in set (0.00 sec)
+
+--------------
+SELECT lname FROM patient
+--------------
+
++--------+
+| lname  |
++--------+
+|        |
+| Gellar |
+| Brown  |
+| Green  |
+| Liu    |
+| Gellar |
+| Gellar |
+| Bing   |
++--------+
+8 rows in set (0.00 sec)
+
+--------------
+SELECT distinct lname FROM patient
+--------------
+
++--------+
+| lname  |
++--------+
+|        |
+| Gellar |
+| Brown  |
+| Green  |
+| Liu    |
+| Bing   |
++--------+
+6 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM doctor ORDER BY lname
+--------------
+
++---------+------------+---------------+--------------+-------------------+----------+
+| fname   | lname      | licensenumber | specialty    | license_startdate | works_at |
++---------+------------+---------------+--------------+-------------------+----------+
+| Colleen | Aziz       | SE66          | Surgeon      | 1989-08-24        | ABC      |
+| Ross    | Clooney    | HT45          | Surgeon      | 1987-06-20        | DDE      |
+| Mark    | Hall       | AP48          | Surgeon      | 1967-07-21        | ABC      |
+| Bernie  | Kavorikian | RD34          | Urologist    | 1980-09-09        | BBC      |
+| Joey    | Shabado    | GD56          | Podiatris    | 1960-06-24        | BBC      |
+| Ben     | Spock      | YT67          | Pediatrician | 1955-02-20        | DDE      |
+| Mandy   | Webster    | JK78          | Surgeon      | 1990-08-08        | BBC      |
++---------+------------+---------------+--------------+-------------------+----------+
+7 rows in set (0.00 sec)
+
+--------------
+SELECT name, code FROM hospital WHERE number_of_beds > 1500
+--------------
+
++----------+------+
+| name     | code |
++----------+------+
+| Victoria | ABC  |
++----------+------+
+1 row in set (0.01 sec)
+
+--------------
+SELECT lname, fname FROM doctor, hospital WHERE doctor.works_at = hospital.code AND hospital.name = "St. Joseph"
+--------------
+
++------------+--------+
+| lname      | fname  |
++------------+--------+
+| Shabado    | Joey   |
+| Webster    | Mandy  |
+| Kavorikian | Bernie |
++------------+--------+
+3 rows in set (0.00 sec)
+
+--------------
+SELECT fname, lname FROM patient WHERE lname LIKE 'G%'
+--------------
+
++---------+--------+
+| fname   | lname  |
++---------+--------+
+| Bill    | Gellar |
+| Jon     | Green  |
+| Colleen | Gellar |
+| Sean    | Gellar |
++---------+--------+
+4 rows in set (0.00 sec)
+
+--------------
+SELECT p.fname, p.lname FROM patient p INNER JOIN treats t 
+ON p.ohip = t.patient_ohip INNER JOIN doctor d 
+ON t.treated_by = d.licensenumber WHERE d.lname = "Clooney"
+--------------
+
++--------+--------+
+| fname  | lname  |
++--------+--------+
+| Suzi   | Brown  |
+| Jon    | Green  |
+| Yu     | Liu    |
+| Sean   | Gellar |
+| Scotty | Bing   |
++--------+--------+
+5 rows in set (0.00 sec)
+
+--------------
+SELECT h.name, h.city, d.lname FROM hospital h INNER JOIN doctor d 
+ON h.currenthead = d.licensenumber
+--------------
+
++------------+----------+---------+
+| name       | city     | lname   |
++------------+----------+---------+
+| Victoria   | London   | Aziz    |
+| St. Joseph | London   | Shabado |
+| Victoria   | Victoria | Spock   |
++------------+----------+---------+
+3 rows in set (0.00 sec)
+
+--------------
+SELECT sum(number_of_beds) AS total_number_of_beds FROM hospital
+--------------
+
++----------------------+
+| total_number_of_beds |
++----------------------+
+|                 3800 |
++----------------------+
+1 row in set (0.00 sec)
+
+--------------
+SELECT p.fname, d.fname FROM patient p INNER JOIN treats t 
+ON p.ohip = t.patient_ohip INNER JOIN doctor d 
+ON t.treated_by = d.licensenumber WHERE d.licensenumber IN 
+(SELECT currenthead FROM hospital)
+--------------
+
++---------+---------+
+| fname   | fname   |
++---------+---------+
+| Bill    | Joey    |
+| Jon     | Colleen |
+| Colleen | Joey    |
+| Scotty  | Joey    |
++---------+---------+
+4 rows in set (0.00 sec)
+
+--------------
+SELECT fname, lname FROM doctor INNER JOIN hospital 
+ON doctor.works_at = hospital.code WHERE doctor.specialty = "Surgeon" 
+AND hospital.name = "Victoria"
+--------------
+
++---------+---------+
+| fname   | lname   |
++---------+---------+
+| Mark    | Hall    |
+| Ross    | Clooney |
+| Colleen | Aziz    |
++---------+---------+
+3 rows in set (0.00 sec)
+
+--------------
+SELECT fname FROM doctor WHERE licensenumber NOT IN 
+(SELECT treated_by FROM treats)
+--------------
+
++--------+
+| fname  |
++--------+
+| Mark   |
+| Bernie |
+| Ben    |
++--------+
+3 rows in set (0.00 sec)
+
+--------------
+SELECT fname, lname FROM treats INNER JOIN doctor 
+ON treated_by = licensenumber GROUP BY licensenumber HAVING count(patient_ohip)>1
+--------------
+
++-------+---------+
+| fname | lname   |
++-------+---------+
+| Joey  | Shabado |
+| Ross  | Clooney |
+| Mandy | Webster |
++-------+---------+
+3 rows in set (0.00 sec)
+
+Bye

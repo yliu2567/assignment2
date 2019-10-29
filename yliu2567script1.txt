@@ -1,0 +1,55 @@
+show databases;
+DROP database if exists yliu2567assign2db;
+create database yliu2567assign2db;
+use yliu2567assign2db;
+GRANT USAGE ON *.* TO 'ta'@'localhost';
+DROP USER 'ta'@'localhost';
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319';
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost';
+FLUSH PRIVILEGES;
+show tables;
+
+
+
+
+CREATE TABLE doctor(
+fname  varchar(20) NOT NULL,
+lname varchar(20) NOT NULL,
+licensenumber char(4) NOT NULL UNIQUE,
+specialty char(30) NOT NULL,
+license_startdate DATE NOT NULL,
+works_at char(3),
+PRIMARY KEY (licensenumber)
+);
+
+
+
+CREATE TABLE hospital(
+code char(3) NOT NULL UNIQUE,
+name varchar(20) NOT NULL,
+city varchar(20) NOT NULL,
+province varchar(20) NOT NULL,
+number_of_beds INT NOT NULL,
+currenthead char(4) NOT NULL,
+start_date DATE NOT NULL,
+PRIMARY KEY (code),
+FOREIGN KEY (currenthead) REFERENCES doctor(licensenumber)
+);
+
+ALTER TABLE doctor
+ADD FOREIGN KEY (works_at) REFERENCES hospital(code);
+
+CREATE TABLE patient(
+ohip int(9) NOT NULL UNIQUE,
+fname char(20) NOT NULL,
+lname char(20) NOT NULL,
+PRIMARY KEY (OHIP));
+
+CREATE TABLE treats(
+patient_ohip int(9) NOT NULL,
+treated_by char(4) NOT NULL,
+PRIMARY KEY (patient_ohip, treated_by),
+FOREIGN KEY (patient_ohip) REFERENCES patient(ohip),
+FOREIGN KEY (treated_by) REFERENCES doctor(licensenumber)
+ON DELETE CASCADE
+);

@@ -36,9 +36,9 @@ SELECT * FROM treatedbyheads
 +---------+---------------+--------------+------------+
 | fname   | patient_lname | doctor_lname | name       |
 +---------+---------------+--------------+------------+
-| Bill    | Gellar        | Shabado      | St. Joseph |
-| Colleen | Gellar        | Shabado      | St. Joseph |
-| Scotty  | Bing          | Shabado      | St. Joseph |
+| Bill    | Gellar       | Shabado      | St. Joseph |
+| Colleen | Gellar       | Shabado      | St. Joseph |
+| Scotty  | Bing         | Shabado      | St. Joseph |
 +---------+---------------+--------------+------------+
 3 rows in set (0.00 sec)
 

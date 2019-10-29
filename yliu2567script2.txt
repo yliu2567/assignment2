@@ -4,7 +4,8 @@ USE yliu2567assign2db;
 SELECT * FROM patient;
 LOAD DATA LOCAL INFILE 'loaddatafall2019.txt' INTO TABLE patient 
 FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n';
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n';
  
 SELECT * FROM patient;
 INSERT INTO patient VALUES(123456789,"Yu","Liu");

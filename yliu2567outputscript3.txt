@@ -17,34 +17,34 @@ SHOW databases
 SELECT lname FROM patient
 --------------
 
-+---------+
-| lname   |
-+---------+
-|         |
-| Gellar |
-| Brown   |
-| Green  |
-| Liu     |
-| Gellar |
-| Gellar |
-| Bing   |
-+---------+
++--------+
+| lname  |
++--------+
+|        |
+| Gellar |
+| Brown  |
+| Green  |
+| Liu    |
+| Gellar |
+| Gellar |
+| Bing   |
++--------+
 8 rows in set (0.00 sec)
 
 --------------
 SELECT distinct lname FROM patient
 --------------
 
-+---------+
-| lname   |
-+---------+
-|         |
-| Gellar |
-| Brown   |
-| Green  |
-| Liu     |
-| Bing   |
-+---------+
++--------+
+| lname  |
++--------+
+|        |
+| Gellar |
+| Brown  |
+| Green  |
+| Liu    |
+| Bing   |
++--------+
 6 rows in set (0.00 sec)
 
 --------------
@@ -92,14 +92,14 @@ SELECT lname, fname FROM doctor, hospital WHERE doctor.works_at = hospital.code 
 SELECT fname, lname FROM patient WHERE lname LIKE 'G%'
 --------------
 
-+---------+---------+
-| fname   | lname   |
-+---------+---------+
-| Bill    | Gellar |
-| Jon     | Green  |
-| Colleen | Gellar |
-| Sean    | Gellar |
-+---------+---------+
++---------+--------+
+| fname   | lname  |
++---------+--------+
+| Bill    | Gellar |
+| Jon     | Green  |
+| Colleen | Gellar |
+| Sean    | Gellar |
++---------+--------+
 4 rows in set (0.00 sec)
 
 --------------
@@ -108,15 +108,15 @@ ON p.ohip = t.patient_ohip INNER JOIN doctor d
 ON t.treated_by = d.licensenumber WHERE d.lname = "Clooney"
 --------------
 
-+--------+---------+
-| fname  | lname   |
-+--------+---------+
-| Suzi   | Brown   |
-| Jon    | Green  |
-| Yu     | Liu     |
-| Sean   | Gellar |
-| Scotty | Bing   |
-+--------+---------+
++--------+--------+
+| fname  | lname  |
++--------+--------+
+| Suzi   | Brown  |
+| Jon    | Green  |
+| Yu     | Liu    |
+| Sean   | Gellar |
+| Scotty | Bing   |
++--------+--------+
 5 rows in set (0.00 sec)
 
 --------------
@@ -188,7 +188,7 @@ SELECT fname FROM doctor WHERE licensenumber NOT IN
 | Bernie |
 | Ben    |
 +--------+
-3 rows in set (0.01 sec)
+3 rows in set (0.00 sec)
 
 --------------
 SELECT fname, lname FROM treats INNER JOIN doctor 

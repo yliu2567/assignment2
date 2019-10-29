@@ -22,7 +22,8 @@ Empty set (0.00 sec)
 --------------
 LOAD DATA LOCAL INFILE 'loaddatafall2019.txt' INTO TABLE patient 
 FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
 --------------
 
 Query OK, 7 rows affected, 3 warnings (0.01 sec)
@@ -32,17 +33,17 @@ Records: 7  Deleted: 0  Skipped: 0  Warnings: 3
 SELECT * FROM patient
 --------------
 
-+-----------+---------+---------+
-| ohip      | fname   | lname   |
-+-----------+---------+---------+
-|         0 |         |         |
-| 110112113 | Bill    | Gellar |
-| 111222111 | Suzi    | Bing   |
-| 111222333 | Jon     | Green  |
-| 333444555 | Colleen | Gellar |
-| 444555666 | Sean    | Gellar |
-| 667766777 | Scotty  | Bing   |
-+-----------+---------+---------+
++-----------+---------+--------+
+| ohip      | fname   | lname  |
++-----------+---------+--------+
+|         0 |         |        |
+| 110112113 | Bill    | Gellar |
+| 111222111 | Suzi    | Bing   |
+| 111222333 | Jon     | Green  |
+| 333444555 | Colleen | Gellar |
+| 444555666 | Sean    | Gellar |
+| 667766777 | Scotty  | Bing   |
++-----------+---------+--------+
 7 rows in set (0.00 sec)
 
 --------------
@@ -55,18 +56,18 @@ Query OK, 1 row affected (0.02 sec)
 SELECT * FROM patient
 --------------
 
-+-----------+---------+---------+
-| ohip      | fname   | lname   |
-+-----------+---------+---------+
-|         0 |         |         |
-| 110112113 | Bill    | Gellar |
-| 111222111 | Suzi    | Bing   |
-| 111222333 | Jon     | Green  |
-| 123456789 | Yu      | Liu     |
-| 333444555 | Colleen | Gellar |
-| 444555666 | Sean    | Gellar |
-| 667766777 | Scotty  | Bing   |
-+-----------+---------+---------+
++-----------+---------+--------+
+| ohip      | fname   | lname  |
++-----------+---------+--------+
+|         0 |         |        |
+| 110112113 | Bill    | Gellar |
+| 111222111 | Suzi    | Bing   |
+| 111222333 | Jon     | Green  |
+| 123456789 | Yu      | Liu    |
+| 333444555 | Colleen | Gellar |
+| 444555666 | Sean    | Gellar |
+| 667766777 | Scotty  | Bing   |
++-----------+---------+--------+
 8 rows in set (0.00 sec)
 
 --------------
@@ -79,13 +80,13 @@ Empty set (0.00 sec)
 INSERT INTO doctor VALUES("Bernie","Kavorikian","RD34","Urologist","1980-09-09",NULL)
 --------------
 
-Query OK, 1 row affected (0.02 sec)
+Query OK, 1 row affected (0.00 sec)
 
 --------------
 INSERT INTO doctor VALUES("Joey","Shabado","GD56","Podiatris","1960-06-24",NULL)
 --------------
 
-Query OK, 1 row affected (0.00 sec)
+Query OK, 1 row affected (0.01 sec)
 
 --------------
 INSERT INTO doctor VALUES("Ross","Clooney","HT45","Surgeon","1987-06-20",NULL)
@@ -115,7 +116,7 @@ Query OK, 1 row affected (0.00 sec)
 INSERT INTO doctor VALUES("Mark","Hall","AP48","Surgeon","1967-07-21",NULL)
 --------------
 
-Query OK, 1 row affected (0.10 sec)
+Query OK, 1 row affected (0.01 sec)
 
 --------------
 SELECT * FROM doctor
@@ -144,7 +145,7 @@ Empty set (0.00 sec)
 INSERT INTO hospital VALUES("BBC","St. Joseph","London","On",1000,"GD56","1999-09-10")
 --------------
 
-Query OK, 1 row affected (0.00 sec)
+Query OK, 1 row affected (0.01 sec)
 
 --------------
 INSERT INTO hospital VALUES("ABC","Victoria","London","On",1600,"SE66","1994-12-05")
@@ -193,7 +194,7 @@ Query OK, 1 row affected (0.01 sec)
 INSERT INTO treats VALUES("444555666","JK78")
 --------------
 
-Query OK, 1 row affected (0.03 sec)
+Query OK, 1 row affected (0.02 sec)
 
 --------------
 INSERT INTO treats VALUES("111222333","SE66")
@@ -229,7 +230,7 @@ Query OK, 1 row affected (0.01 sec)
 INSERT INTO treats VALUES("667766777","JK78")
 --------------
 
-Query OK, 1 row affected (0.01 sec)
+Query OK, 1 row affected (0.03 sec)
 
 --------------
 INSERT INTO treats VALUES("667766777","GD56")
@@ -241,7 +242,7 @@ Query OK, 1 row affected (0.00 sec)
 INSERT INTO treats VALUES("111222111","YT67")
 --------------
 
-Query OK, 1 row affected (0.01 sec)
+Query OK, 1 row affected (0.02 sec)
 
 --------------
 INSERT INTO treats VALUES("123456789","YT67")
@@ -292,7 +293,7 @@ SELECT * FROM doctor
 UPDATE doctor SET works_at = "BBC" WHERE licensenumber="RD34"
 --------------
 
-Query OK, 1 row affected (0.12 sec)
+Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
 --------------
@@ -306,14 +307,14 @@ Rows matched: 1  Changed: 1  Warnings: 0
 UPDATE doctor SET works_at = "DDE" WHERE licensenumber="HT45"
 --------------
 
-Query OK, 1 row affected (0.01 sec)
+Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
 --------------
 UPDATE doctor SET works_at = "DDE" WHERE licensenumber="YT67"
 --------------
 
-Query OK, 1 row affected (0.00 sec)
+Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
 --------------
@@ -358,43 +359,43 @@ SELECT * FROM doctor
 SELECT * FROM patient
 --------------
 
-+-----------+---------+---------+
-| ohip      | fname   | lname   |
-+-----------+---------+---------+
-|         0 |         |         |
-| 110112113 | Bill    | Gellar |
-| 111222111 | Suzi    | Bing   |
-| 111222333 | Jon     | Green  |
-| 123456789 | Yu      | Liu     |
-| 333444555 | Colleen | Gellar |
-| 444555666 | Sean    | Gellar |
-| 667766777 | Scotty  | Bing   |
-+-----------+---------+---------+
++-----------+---------+--------+
+| ohip      | fname   | lname  |
++-----------+---------+--------+
+|         0 |         |        |
+| 110112113 | Bill    | Gellar |
+| 111222111 | Suzi    | Bing   |
+| 111222333 | Jon     | Green  |
+| 123456789 | Yu      | Liu    |
+| 333444555 | Colleen | Gellar |
+| 444555666 | Sean    | Gellar |
+| 667766777 | Scotty  | Bing   |
++-----------+---------+--------+
 8 rows in set (0.00 sec)
 
 --------------
 UPDATE patient SET lname = "Brown" WHERE ohip = "111222111"
 --------------
 
-Query OK, 1 row affected (0.01 sec)
+Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
 --------------
 SELECT * FROM patient
 --------------
 
-+-----------+---------+---------+
-| ohip      | fname   | lname   |
-+-----------+---------+---------+
-|         0 |         |         |
-| 110112113 | Bill    | Gellar |
-| 111222111 | Suzi    | Brown   |
-| 111222333 | Jon     | Green  |
-| 123456789 | Yu      | Liu     |
-| 333444555 | Colleen | Gellar |
-| 444555666 | Sean    | Gellar |
-| 667766777 | Scotty  | Bing   |
-+-----------+---------+---------+
++-----------+---------+--------+
+| ohip      | fname   | lname  |
++-----------+---------+--------+
+|         0 |         |        |
+| 110112113 | Bill    | Gellar |
+| 111222111 | Suzi    | Brown  |
+| 111222333 | Jon     | Green  |
+| 123456789 | Yu      | Liu    |
+| 333444555 | Colleen | Gellar |
+| 444555666 | Sean    | Gellar |
+| 667766777 | Scotty  | Bing   |
++-----------+---------+--------+
 8 rows in set (0.00 sec)
 
 --------------

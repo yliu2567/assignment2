@@ -2,6 +2,7 @@ SHOW databases;
 USE yliu2567assign2db;
 
 DELETE FROM doctor WHERE license_startdate < "1965-01-01";
+-- Rows cannot be deleted because doctor's licensenumber is a foreign key.
 
 CREATE VIEW treatedbyheads AS SELECT p.fname, p.lname AS patient_lname, 
 d.lname AS doctor_lname, h.name FROM 
@@ -20,7 +21,10 @@ DELETE FROM doctor WHERE lname = "Clooney";
 
 SELECT * FROM doctor;
 
+SELECT * FROM treats;
+
 -- TABEL treats set foreign key on delete cascade.
+-- Related rows in treats table also get deleted.
 
 DELETE FROM doctor WHERE specialty = "Surgeon";
 -- the delete command did not delete the rows because two row in doctor table

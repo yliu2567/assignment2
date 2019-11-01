@@ -36,9 +36,9 @@ SELECT * FROM treatedbyheads
 +---------+---------------+--------------+------------+
 | fname   | patient_lname | doctor_lname | name       |
 +---------+---------------+--------------+------------+
-| Bill    | Gellar        | Shabado      | St. Joseph |
-| Colleen | Gellar        | Shabado      | St. Joseph |
-| Scotty  | Bing          | Shabado      | St. Joseph |
+| Bill    | Gellar       | Shabado      | St. Joseph |
+| Colleen | Gellar       | Shabado      | St. Joseph |
+| Scotty  | Bing         | Shabado      | St. Joseph |
 +---------+---------------+--------------+------------+
 3 rows in set (0.00 sec)
 
@@ -120,7 +120,7 @@ SELECT * FROM treats
 +--------------+------------+
 7 rows in set (0.00 sec)
 
-ERROR 1451 (23000) at line 28: Cannot delete or update a parent row: a foreign key constraint fails (`yliu2567assign2db`.`hospital`, CONSTRAINT `hospital_ibfk_1` FOREIGN KEY (`currenthead`) REFERENCES `doctor` (`licensenumber`))
+ERROR 1451 (23000) at line 29: Cannot delete or update a parent row: a foreign key constraint fails (`yliu2567assign2db`.`hospital`, CONSTRAINT `hospital_ibfk_1` FOREIGN KEY (`currenthead`) REFERENCES `doctor` (`licensenumber`))
 --------------
 DELETE FROM doctor WHERE specialty = "Surgeon"
 --------------

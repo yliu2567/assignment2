@@ -72,7 +72,7 @@ PRIMARY KEY (licensenumber)
 )
 --------------
 
-Query OK, 0 rows affected (0.25 sec)
+Query OK, 0 rows affected (0.07 sec)
 
 --------------
 CREATE TABLE hospital(
@@ -95,7 +95,7 @@ ALTER TABLE doctor
 ADD FOREIGN KEY (works_at) REFERENCES hospital(code)
 --------------
 
-Query OK, 0 rows affected (0.14 sec)
+Query OK, 0 rows affected (0.73 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
 --------------
@@ -106,7 +106,7 @@ lname char(20) NOT NULL,
 PRIMARY KEY (OHIP))
 --------------
 
-Query OK, 0 rows affected (0.07 sec)
+Query OK, 0 rows affected (0.06 sec)
 
 --------------
 CREATE TABLE treats(
@@ -119,6 +119,6 @@ ON DELETE CASCADE
 )
 --------------
 
-Query OK, 0 rows affected (0.19 sec)
+Query OK, 0 rows affected (0.15 sec)
 
 Bye

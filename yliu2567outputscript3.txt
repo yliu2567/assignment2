@@ -20,7 +20,6 @@ SELECT lname FROM patient
 +---------+
 | lname   |
 +---------+
-|         |
 | Gellar |
 | Brown   |
 | Green  |
@@ -29,7 +28,7 @@ SELECT lname FROM patient
 | Gellar |
 | Bing   |
 +---------+
-8 rows in set (0.00 sec)
+7 rows in set (0.00 sec)
 
 --------------
 SELECT distinct lname FROM patient
@@ -38,14 +37,13 @@ SELECT distinct lname FROM patient
 +---------+
 | lname   |
 +---------+
-|         |
 | Gellar |
 | Brown   |
 | Green  |
 | Liu     |
 | Bing   |
 +---------+
-6 rows in set (0.00 sec)
+5 rows in set (0.00 sec)
 
 --------------
 SELECT * FROM doctor ORDER BY lname

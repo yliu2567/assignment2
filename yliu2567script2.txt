@@ -9,7 +9,7 @@ LINES TERMINATED BY '\n';
 SELECT * FROM patient;
 INSERT INTO patient VALUES(123456789,"Yu","Liu");
 SELECT * FROM patient;
-DELETE FROM patient WHERER ohip = 0;
+DELETE FROM patient WHERE ohip = 0;
 
 SELECT * FROM doctor;
 INSERT INTO doctor VALUES("Bernie","Kavorikian","RD34","Urologist","1980-09-09",NULL);
